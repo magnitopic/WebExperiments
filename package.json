@@ -1,0 +1,22 @@
+{
+  "name": "magnitopic.com-express",
+  "version": "1.0.0",
+  "description": "The server for magnitopic.com made using NodeJS and express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magnitopic/magnitopic.com-express.git"
+  },
+  "author": "Magnitopic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/magnitopic/magnitopic.com-express/issues"
+  },
+  "homepage": "https://github.com/magnitopic/magnitopic.com-express#readme",
+  "dependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
