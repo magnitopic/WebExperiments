@@ -6,21 +6,21 @@ const app=express();
 const dbURL='mongodb://localhost/NodeServerDB';
 
 mongoose.connect(dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
-    .then((result) => app.listen(8080, () => console.log('\nServer runing on port 8080\n\nPress ctrl+c to stop')), console.log('Connection to DB successful'))
-    .catch((err) => console.log(err));
+    .then(result => app.listen(8080, () => console.log('\nServer runing on port 8080\n\nPress ctrl+c to stop')), console.log('Connection to DB successful'))
+    .catch(err => console.log(err));
 
-app.get('/add-dado', (req, res) => {
+app.get('/add-dice', (req, res) => {
     const dice = new Dice({
-        date: req.date,
+        date: Date.now(),
         range: 6,
         result: 3
     })
 
-    blog.save()
-        .then((result) => {
+    dice.save()
+        .then(result => {
             res.send(result)
         })
-        .catch((err) =>{
+        .catch(err =>{
             console.log(err);
         });
 });

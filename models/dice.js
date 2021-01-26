@@ -1,7 +1,7 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 const schema= mongoose.Schema;
 
-const diceSchema = new Schema({
+const diceSchema = new mongoose.Schema({
     date: {
         type: Date,
         required: true
