@@ -5,7 +5,9 @@ const Dice =require('./models/dice');
 
 const app=express();
 const dbURL='mongodb://localhost/NodeServerDB';
-app.use(express.urlencoded({ extended: true }));
+
+app.set('view engine', 'ejs');
+app.set('views', 'web');
 
 mongoose.connect(dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
     .then(result => app.listen(8080, () => console.log('\nServer runing on port 8080\n\nPress ctrl+c to stop')), console.log('Connection to DB successful'))
