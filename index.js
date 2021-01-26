@@ -46,4 +46,6 @@ app.get('/all-dice', (req, res) =>{
         })
 })
 
-app.get('/', (req, res) => res.send('Hola Mundo'));
+app.get('/', (req, res) => res.sendFile('./web/index.html', {root: __dirname}));
+
+app.use((req,res) => res.sendFile('./web/404.html', {root: __dirname}))
