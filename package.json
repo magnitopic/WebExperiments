@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "watch-css": "sass --source-map --watch web/scss/:web/css/"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "mongoose": "^5.11.13",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "sass": "^1.32.5"
   }
 }

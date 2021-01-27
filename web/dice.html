@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dice Page</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/dice.css">
 </head>
+
 <body>
-     <form action="/dice" method="POST">
-        <p>Range</p>
-        <input type="number" value="6" name="range">
-        <p>Result</p>
-        <input type="number" value="4" name="result"><br>
-        <button>Submit</button>
+    <div style="display: flex; justify-content: center;">
+        <div id="container">
+            <img src="./img/dice.png" alt="Dado" style="width:100%;">
+            <div id="result">
+                <h1 style="color: black;">20</h1>
+            </div>
+        </div>
+    </div>
+    <form id="from" action="/dice" method="POST">
+        <p id="FTitle">A random number bewteen 1 and...</p>
+        <input id="FInput" type="number" value="6" name="range">
+        <button id="FSubmit">Roll the dice</button>
     </form>
+    <hr>
+    <div class="history">
+        <div class="value">Date</div>
+        <div class="value">Range</div>
+        <div class="value">Result</div>
+    </div>
+    <div id="footer" style="border: 1px solid ;">
+        <div id="dMode" style="display:flex;flex-direction:row;padding: 1vw;">
+            <p id="text" style="margin: 0;">Activate Dark Mode:</p>
+            <input type="checkbox" id="check" onclick="changeStatus()"></input>
+        </div>
+    </div>
 </body>
+<!--<script src="./js/darkmode.js"></script>-->
+<script src="./js/darkmode.js"></script>
+
 </html>
