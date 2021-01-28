@@ -25,9 +25,22 @@
     </form>
     <hr>
     <div class="history">
-        <div class="value">Date</div>
-        <div class="value">Range</div>
-        <div class="value">Result</div>
+        <% if (dice.length > 0) { %>
+            <div class="entries">
+                <div class="value">Date</div>
+                <div class="value">Range</div>
+                <div class="value">Result</div>
+            </div>
+            <% dice.forEach(dice =>{%>
+            <div class="entries">
+                <div class="value"><p><%= dice.date %></p></div>
+                <div class="value"><p>1-<%= dice.range %></p></div>
+                <div class="value"><p><%= dice.result %></p></div>
+            </div>
+            <% })%>
+        <% } else {%>
+            <p>No one has rolled the dice yet. Be the first!!</p>
+        <% } %>
     </div>
     <div id="footer" style="border: 1px solid ;">
         <div id="dMode" style="display:flex;flex-direction:row;padding: 1vw;">

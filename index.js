@@ -17,7 +17,13 @@ mongoose.connect(dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
     .catch(err => console.log(err));
 
 app.get('/dice', (req,res)=>{
-    res.sendFile(path.join(__dirname+'/web/dice.html'));
+    Dice.find().sort({ createdAt: -1})
+        .then((result)=>{
+            res.render('dice', { dice: result })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
 });
 
 app.post('/dice', (req, res) =>{
@@ -32,23 +38,7 @@ app.post('/dice', (req, res) =>{
 
     dice.save()
         .then(result => {
-            res.send(result)
-        })
-        .catch(err =>{
-            console.log(err);
-        });
-});
-
-app.get('/add-dice', (req, res) => {
-    const dice = new Dice({
-        date: Date.now(),
-        range: 6,
-        result: 3
-    })
-
-    dice.save()
-        .then(result => {
-            res.send(result)
+            res.redirect('/dice');
         })
         .catch(err =>{
             console.log(err);
@@ -67,4 +57,4 @@ app.get('/all-dice', (req, res) =>{
 
 app.get('/', (req, res) => res.sendFile('./web/index.html', {root: __dirname}));
 
-app.use((req,res) => res.sendFile('./web/404.html', {root: __dirname}))
+app.use((req,res) => res.status(404).render('404'));
