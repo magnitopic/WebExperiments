@@ -45,6 +45,14 @@ app.post('/dice', (req, res) =>{
         });
 });
 
+app.delete('/dice',(req,res)=>{
+    Dice.deleteMany({})
+    .then(result=>{
+        res.json({ redirect: '/dice'});
+    })
+    .catch(err=>console.log(err));
+});
+
 app.get('/all-dice', (req, res) =>{
     Dice.find()
         .then(result => {

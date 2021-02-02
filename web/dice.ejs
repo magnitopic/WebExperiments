@@ -14,7 +14,9 @@
         <div id="container">
             <img src="./img/dice.png" alt="Dado" style="width:100%;">
             <div id="result">
-                <h1 style="color: black;">20</h1>
+                <% %>
+                <h1 style="color: black;"><%= dice.result %></h1>
+                <% %>
             </div>
         </div>
     </div>
@@ -23,6 +25,7 @@
         <input id="FInput" type="number" value="6" name="range">
         <button id="FSubmit">Roll the dice</button>
     </form>
+    <div style="display: flex;justify-content: center;"><a class="delete" data-doc="<%= dice %>">Delete Dice throws</a></div>
     <hr>
     <div class="history">
         <% if (dice.length > 0) { %>
@@ -39,7 +42,7 @@
             </div>
             <% })%>
         <% } else {%>
-            <p>No one has rolled the dice yet. Be the first!!</p>
+            <h1 style="margin: 2vw;">No one has rolled the dice yet. Be the first!!</h1>
         <% } %>
     </div>
     <div id="footer" style="border: 1px solid ;">
@@ -48,6 +51,17 @@
             <input type="checkbox" id="check" onclick="changeStatus()"></input>
         </div>
     </div>
+<script>
+    const erase =document.querySelector('a.delete');
+    erase.addEventListener('click', (e)=>{
+        fetch('/dice',{
+            method: 'DELETE'
+        })
+        .then((response)=>response.json())
+        .then((data)=>window.location.href=data.redirect)
+        .catch(err=> console.log(err));
+    })
+</script>
 </body>
 <!--<script src="./js/darkmode.js"></script>-->
 <script src="./js/darkmode.js"></script>

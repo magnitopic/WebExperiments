@@ -80,3 +80,19 @@ input[type="checkbox"]{
     justify-content: center;
     align-items: center;
 }
+
+.delete{
+    font-size: 0.9vw;
+    border: none;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 0.8vw;
+    background-color: #EFEFEF;
+    margin-bottom: 2vw;
+}
+
+.delete:hover{
+    transition: all .4s ease;
+    background-color: rgb(255, 53, 53);
+}
