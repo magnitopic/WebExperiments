@@ -30,6 +30,7 @@ app.get('/dice', (req,res)=>{
 
 app.post('/dice', (req, res) =>{
     const range= req.body.range;
+    if (range>=1){
     const result=Math.floor(Math.random()*range+1);
     const dice = new Dice({
         date:  new Date().toLocaleString(),
@@ -44,6 +45,9 @@ app.post('/dice', (req, res) =>{
         .catch(err =>{
             console.log(err);
         });
+    }else{
+        res.redirect('/dice');
+    }
 });
 
 app.delete('/dice',(req,res)=>{
