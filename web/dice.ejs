@@ -37,9 +37,9 @@
             <% dice.forEach(dice =>{%>
             <div class="entries">
                 <!--.toString().slice(4, -45).replace('Feb',"02");-->
-                <div id="date" class="value"><p><%= dice.date%></p></div>
-                <div class="value"><p>1-<%= dice.range %></p></div>
-                <div class="value"><p><%= dice.result %></p></div>
+                <div id="date" class="value"><%= dice.date%></div>
+                <div class="value">1-<%= dice.range %></div>
+                <div class="value"><%= dice.result %></div>
             </div>
             <% })%>
         <% } else {%>

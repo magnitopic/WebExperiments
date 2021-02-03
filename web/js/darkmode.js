@@ -4,28 +4,32 @@ if (localStorage.getItem('darkMode')===null){
     localStorage.setItem('darkMode', "false");
 }
 
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+document.getElementsByTagName('HEAD')[0].appendChild(link);
+
 checkStatus()
 
 function checkStatus(){
     if (localStorage.getItem('darkMode')==="true"){
         check.checked = true;
-        document.getElementsByTagName("p")[0].style.color="#FFF";
-        document.body.style.backgroundColor = "#181A1B";
+        link.href = './css/dark.css';
     }else{
         check.checked = false;
-        document.getElementsByTagName("p")[0].style.color="black";
-        document.body.style.backgroundColor = "#FFF";
+        link.href = './css/light.css';
     }
 }
 
 function changeStatus(){
     if (localStorage.getItem('darkMode')==="true"){
         localStorage.setItem('darkMode', "false");
-        document.getElementsByTagName("p")[0].style.color="black";
-        document.body.style.backgroundColor = "#FFF";
+        link.href = './css/light.css';
+        //document.getElementsByTagName("p")[0].style.color="black";
+        //document.body.style.backgroundColor = "#FFF";
     } else{
         localStorage.setItem('darkMode', "true");
-        document.getElementsByTagName("p")[0].style.color="#FFF";
-        document.body.style.backgroundColor = "#181A1B";
+        link.href = './css/dark.css';
+        //document.getElementsByTagName("p")[0].style.color="#FFF";
+        //document.body.style.backgroundColor = "#181A1B";
     }
 }
