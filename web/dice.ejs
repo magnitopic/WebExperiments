@@ -30,13 +30,14 @@
     <div class="history">
         <% if (dice.length > 0) { %>
             <div class="entries">
-                <div class="value">Date</div>
+                <div id="date" class="value">Date</div>
                 <div class="value">Range</div>
                 <div class="value">Result</div>
             </div>
             <% dice.forEach(dice =>{%>
             <div class="entries">
-                <div class="value"><p><%= dice.date %></p></div>
+                <!--.toString().slice(4, -45).replace('Feb',"02");-->
+                <div id="date" class="value"><p><%= dice.date%></p></div>
                 <div class="value"><p>1-<%= dice.range %></p></div>
                 <div class="value"><p><%= dice.result %></p></div>
             </div>

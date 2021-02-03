@@ -3,7 +3,7 @@ const schema= mongoose.Schema;
 
 const diceSchema = new mongoose.Schema({
     date: {
-        type: Date,
+        type: String,
         required: true
     },
     range: {

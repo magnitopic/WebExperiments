@@ -26,12 +26,13 @@ app.get('/dice', (req,res)=>{
         })
 });
 
+//We use toLocaleString() to turn the date to a shorter format
+
 app.post('/dice', (req, res) =>{
-    console.log(req.body);
     const range= req.body.range;
     const result=Math.floor(Math.random()*range+1);
     const dice = new Dice({
-        date: Date.now(),
+        date:  new Date().toLocaleString(),
         range: range,
         result: result
     });
