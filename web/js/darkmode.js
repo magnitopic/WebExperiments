@@ -16,14 +16,14 @@ function checkStatus(){
         link.href = './css/dark.css';
     }else{
         check.checked = false;
-        link.href = './css/light.css';
+        link.href = '';
     }
 }
 
 function changeStatus(){
     if (localStorage.getItem('darkMode')==="true"){
         localStorage.setItem('darkMode', "false");
-        link.href = './css/light.css';
+        link.href = '';
         //document.getElementsByTagName("p")[0].style.color="black";
         //document.body.style.backgroundColor = "#FFF";
     } else{
