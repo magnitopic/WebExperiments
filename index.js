@@ -2,6 +2,7 @@ const express= require('express');
 const mongoose= require('mongoose');
 const path=require('path');
 const Dice =require('./models/dice');
+const geoip = require('geoip-lite');
 
 const app=express();
 const dbURL='mongodb://localhost/NodeServerDB';
@@ -30,16 +31,22 @@ app.get('/dice', (req,res)=>{
 
 app.post('/dice', (req, res) =>{
     const range= req.body.range;
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    var ip2='82.213.244.240'; //This var should be deleted when server deployed
+    var geo = geoip.lookup(ip2);    //ip2 should just be ip when server deployed
     if (range>=1){
     const result=Math.floor(Math.random()*range+1);
     const dice = new Dice({
         date:  new Date().toLocaleString(),
         range: range,
-        result: result
+        result: result,
+        country: geo.country
     });
 
     dice.save()
         .then(result => {
+            console.log(ip)
+            console.log(geo)
             res.redirect('/dice');
         })
         .catch(err =>{

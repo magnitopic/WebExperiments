@@ -13,6 +13,10 @@ const diceSchema = new mongoose.Schema({
     result: {
         type: Number,
         required: true
+    },
+    country:{
+        type:String,
+        required:true
     }
 }, {timestamps: true});
 
