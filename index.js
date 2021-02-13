@@ -13,8 +13,10 @@ app.set('views', 'web');
 
 app.use(express.static(path.join(__dirname, 'web')));
 
+const port=process.env.PORT || 8080;
+
 mongoose.connect(dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
-    .then(result => app.listen(8080, () => console.log('\nServer runing on port 8080\n\nPress ctrl+c to stop')), console.log('Connection to DB successful'))
+    .then(result => app.listen(port, () => console.log('\nServer runing on port 8080\n\nPress ctrl+c to stop')), console.log('Connection to DB successful'))
     .catch(err => console.log(err));
 
 app.get('/dice', (req,res)=>{
