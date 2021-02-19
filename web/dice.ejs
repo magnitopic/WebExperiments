@@ -12,7 +12,7 @@
 <body>
     <div style="display: flex; justify-content: center;">
         <div id="container">
-            <img src="./img/dice.png" alt="Dado" style="width:100%;">
+            <img src="./img/dice.png" alt="Dado" style="width:27vw;">
             <div id="result">
                 <% %>
                 <h1 style="color: black;"><%= dice.result %></h1>
@@ -21,7 +21,7 @@
         </div>
     </div>
     <form id="from" action="/dice" method="POST">
-        <p id="FTitle">A random number bewteen 1 and...</p>
+        <p style="margin-right: 1vw;">A random number bewteen 1 and...</p>
         <input id="FInput" type="number" value="6" name="range">
         <button id="FSubmit">Roll the dice</button>
     </form>
@@ -45,7 +45,7 @@
             </div>
             <% })%>
         <% } else {%>
-            <h1 style="margin: 2vw;">No one has rolled the dice yet. Be the first!!</h1>
+            <h2 style="margin: 2vw;">No one has rolled the dice yet. Be the first!!</h2>
         <% } %>
     </div>
     <div id="footer" style="border: 1px solid ;">

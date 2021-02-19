@@ -18,22 +18,15 @@
     align-items: center;
 }
 
-#FTitle{
-    font-size: 1.8vh;
-    margin-right: 1vw;
-}
-
 #FInput{
     padding: 2px;
     height: fit-content;
-    font-size: 1.5vh;
     border-radius: 5px;
     border: 2px solid black;
     margin-right: 1vw;
 }
 
 #FSubmit{
-    font-size: 0.9vw;
     border: none;
     text-decoration: none;
     margin: 4px 2px;
@@ -87,7 +80,6 @@ input[type="checkbox"]{
 }
 
 .delete{
-    font-size: 0.9vw;
     border: none;
     text-decoration: none;
     margin: 4px 2px;
@@ -97,6 +89,14 @@ input[type="checkbox"]{
     margin-bottom: 2vw;
 }
 
+.delete:hover{
+    transition: all .4s ease;
+    background-color: rgb(255, 53, 53);
+}
+
+#date{
+    width: 15vw;
+}
 .delete:hover{
     transition: all .4s ease;
     background-color: rgb(255, 53, 53);
