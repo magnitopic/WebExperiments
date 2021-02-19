@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'web')));
 const port=process.env.PORT || 8080;
 
 mongoose.connect(dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
-    .then(result => app.listen(port, () => console.log('\nServer runing on port 8080\n\nPress ctrl+c to stop')), console.log('Connection to DB successful'))
+    .then(result => app.listen(port, () => console.log(`\nServer runing on port ${port}\n\nPress ctrl+c to stop`)), console.log('Connection to DB successful'))
     .catch(err => console.log(err));
 
 app.get('/dice', (req,res)=>{
@@ -48,7 +48,6 @@ app.post('/dice', (req, res) =>{
     dice.save()
         .then(result => {
             console.log(ip)
-            console.log(geo)
             res.redirect('/dice');
         })
         .catch(err =>{
