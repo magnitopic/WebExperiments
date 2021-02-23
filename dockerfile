@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN npm run build-css
+
 ENV PORT=5000
 
 EXPOSE 5000

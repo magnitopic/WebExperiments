@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index",
+    "build-css": "sass --no-source-map -s compressed web/scss/:web/css/",
     "watch-css": "sass --source-map --watch web/scss/:web/css/"
   },
   "repository": {
