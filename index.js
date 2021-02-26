@@ -33,9 +33,13 @@ app.get('/dice', (req,res)=>{
 
 app.post('/dice', (req, res) =>{
     const range= req.body.range;
-    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    var ip2='82.213.244.240'; //This var should be deleted when server deployed
-    var geo = geoip.lookup(ip2);    //ip2 should just be ip when server deployed
+    var bothips = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    var ip = bothips.substring(7);
+    var geo = geoip.lookup(ip);
+    console.log(typeof ip);
+    console.log(typeof geo);
+    console.log(geo);
+    console.log(ip);
     if (range>=1){
     const result=Math.floor(Math.random()*range+1);
     const dice = new Dice({
