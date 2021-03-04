@@ -2,12 +2,14 @@ const express= require('express');
 const mongoose= require('mongoose');
 const path=require('path');
 const Dice =require('./models/dice');
+const ESP =require('./models/esp');
 const geoip = require('geoip-lite');
+const { json } = require('express');
 
 const app=express();
 const dbURL='mongodb://localhost/NodeServerDB';
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', 'web');
 
@@ -16,9 +18,27 @@ app.use(express.static(path.join(__dirname, 'web')));
 const port=process.env.PORT || 8080;
 
 mongoose.connect(dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
-    .then(result => app.listen(port, () => console.log(`\nServer runing on port ${port}\n\nPress ctrl+c to stop`)), console.log('Connection to DB successful'))
+    .then(result => app.listen(port, () => console.log(`\nServer runing on port ${port}`)), console.log('Connection to DB successful'))
     .catch(err => console.log(err));
 
+//Code for the connection of the esp8266 board 
+
+app.post('/esp', (req, res)=>{
+    console.log(req.body)
+	const esp = new ESP(req.body);
+
+    esp.save()
+    .then((result)=>{
+        res.send("hi");
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+});
+	
+//Code for the connections for the /dice page
+	
+	
 app.get('/dice', (req,res)=>{
     Dice.find().sort({ createdAt: -1})
         .then((result)=>{
@@ -30,11 +50,9 @@ app.get('/dice', (req,res)=>{
 });
 
 //We use toLocaleString() to turn the date to a shorter format
-
 app.post('/dice', (req, res) =>{
-    const range= req.body.range;
-    var bothips = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    var ip = bothips.substring(7);
+    const range= req.body.range
+    var ip = req.connection.remoteAddress;
     var geo = geoip.lookup(ip);
     console.log(typeof ip);
     console.log(typeof geo);
