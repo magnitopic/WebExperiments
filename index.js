@@ -24,7 +24,7 @@ mongoose.connect(dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
 //Code for the connection of the esp8266 board 
 
 app.post('/esp', (req, res)=>{
-    console.log(req.body)
+    console.log(req.body);
 	const esp = new ESP(req.body);
 
     esp.save()
@@ -35,7 +35,17 @@ app.post('/esp', (req, res)=>{
         console.log(err);
     })
 });
-	
+
+app.get('/esp', (req, res)=>{
+    ESP.find().sort({ createdAt: -1})
+        .then((result)=>{
+            res.render('esp', { esp: result })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+});
+
 //Code for the connections for the /dice page
 	
 	
