@@ -8,6 +8,10 @@
 </head>
 <body>
     <h1>hi</h1>
-    <%= JSON.stringify(esp.text[0].value) %>
+    <% if (esp.length > 0) { %>
+    <%= esp.text.length %>
+    <% } else {%>
+        <h1 style="margin: 2vw;">No hay datos</h1>
+    <% } %>
 </body>
 </html>
