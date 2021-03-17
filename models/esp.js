@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const schema= mongoose.Schema;
 
 const espSchema = new mongoose.Schema({
-    text: {
+    temperature: {
+        type: String,
+        required: true
+    },
+    humidity: {
         type: String,
         required: true
     }
