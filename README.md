@@ -29,7 +29,7 @@ docker build -t magnitopic/server:1.0 .
 ```
 ### Run the MongoDB container
 ```bash
-docker run --name=mongo -d -v /home/mag:/data/db -p 80:5000 mongo
+sudo docker run --name=mongo -d -v /home/mag:/mongodb_data_volume -p 80:5000 mongo
 ```
 ### Run the NodeJS container
 ```bash
