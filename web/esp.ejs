@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/esp.css">
     <title>Weather</title>
 </head>
 <body>
-    <h1>ESP8266</h1>
-    <div >
-
+    <h1>Data form the ESP8266 chip</h1>
+    <div id="scoreBoard">
+        <div id="temp" class="BNumbers">
+            <p>Temperature:</p>
+            <%= esp[esp.length - 1].temperature %>ºC
+        </div>
+        <div id="separator" style="border: 2px solid #000;height: 20vh;"></div>
+        <div id="hum" class="BNumbers">
+            <p>Humidity:</p>
+            <%= esp[esp.length - 1].humidity %>%
+        </div>
     </div>
     <% if (esp.length > 0) { %>
-    <%= esp.length %>
+        <%= esp.length %>
     <% } else {%>
         <h1 style="margin: 2vw;">No hay datos</h1>
     <% } %>
-    <%= esp[esp.length - 1].temperature %>
-    <%= esp[esp.length - 1].humidity %>
     <%- include('./footer.ejs') %>
 </body>
 </html>
