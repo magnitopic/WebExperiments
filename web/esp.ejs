@@ -12,12 +12,12 @@
     <div id="scoreBoard">
         <div id="temp" class="BNumbers">
             <p>Temperature</p>
-            <%= esp[0].temperature %>ºC
+            <%= esp[esp.length - 1].temperature %>ºC
         </div>
         <div id="separator" style="border: 2px solid #000;height: 20vh;"></div>
         <div id="hum" class="BNumbers">
             <p>Humidity</p>
-            <%= esp[0].humidity %>%
+            <%= esp[esp.length - 1].humidity %>%
         </div>
     </div>
     <div style="display: flex;justify-content: center;">
