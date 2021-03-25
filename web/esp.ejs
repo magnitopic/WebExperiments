@@ -8,7 +8,7 @@
     <title>Weather</title>
 </head>
 <body>
-    <h1>Data form the ESP8266 chip</h1>
+    <p class="titles">Data form the ESP8266 chip</p>
     <div id="scoreBoard">
         <div id="temp" class="BNumbers">
             <p>Temperature:</p>
@@ -20,11 +20,18 @@
             <%= esp[esp.length - 1].humidity %>%
         </div>
     </div>
-    <% if (esp.length > 0) { %>
-        <%= esp.length %>
-    <% } else {%>
-        <h1 style="margin: 2vw;">No hay datos</h1>
-    <% } %>
+    <div style="display: flex;justify-content: center;">
+        <div id="stats">
+            <% if (esp.length > 0) { %>
+                <p class="titles">Other statistics from the data colected:</p>
+                <div class="block"><p>Number of stored values:</p>&nbsp; <%= esp.length %></div>
+                
+            <% } else {%>
+                <p class="titles">No data has been sent</p>
+            <% } %>
+            
+        </div>
+    </div>
     <%- include('./footer.ejs') %>
 </body>
 </html>
