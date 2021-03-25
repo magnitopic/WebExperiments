@@ -40,7 +40,7 @@ app.post('/esp', (req, res)=>{
 });
 
 app.get('/esp', (req, res)=>{
-    ESP.find().sort({ createdAt: -1})
+    ESP.find()
         .then((result)=>{
             res.render('esp', { esp: result })
         })

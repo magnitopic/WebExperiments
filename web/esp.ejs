@@ -7,11 +7,17 @@
     <title>Weather</title>
 </head>
 <body>
-    <h1>hi</h1>
+    <h1>ESP8266</h1>
+    <div >
+
+    </div>
     <% if (esp.length > 0) { %>
-    <%= esp.text.length %>
+    <%= esp.length %>
     <% } else {%>
         <h1 style="margin: 2vw;">No hay datos</h1>
     <% } %>
+    <%= esp[esp.length - 1].temperature %>
+    <%= esp[esp.length - 1].humidity %>
+    <%- include('./footer.ejs') %>
 </body>
 </html>
