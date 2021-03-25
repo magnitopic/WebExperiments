@@ -35,6 +35,7 @@ app.post('/esp', (req, res)=>{
         res.send("hi");
     })
     .catch((err)=>{
+        res.send(req.body)
         console.log(err);
     })
 });
