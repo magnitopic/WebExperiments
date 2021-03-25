@@ -3,11 +3,11 @@ const schema= mongoose.Schema;
 
 const espSchema = new mongoose.Schema({
     temperature: {
-        type: String,
+        type: Number,
         required: true
     },
     humidity: {
-        type: String,
+        type: Number,
         required: true
     }
 }, {timestamps: true});
