@@ -14,9 +14,6 @@
         <div id="container">
             <img src="./img/dice.png" alt="Dado" style="width:27vw;">
             <div id="result">
-                <% %>
-                <h1 style="color: black;"><%= dice.result %></h1>
-                <% %>
             </div>
         </div>
     </div>
@@ -42,18 +39,14 @@
                 <div id="date" class="value"><%= dice.date%></div>
                 <div class="value">1-<%= dice.range %></div>
                 <div class="value"><%= dice.result %></div>
+                
             </div>
             <% })%>
         <% } else {%>
             <h2 style="margin: 2vw;">No one has rolled the dice yet. Be the first!!</h2>
         <% } %>
     </div>
-    <div id="footer" style="border: 1px solid ;">
-        <div id="dMode" style="display:flex;flex-direction:row;padding: 1vw;">
-            <p id="text" style="margin: 0;">Activate Dark Mode:</p>
-            <input type="checkbox" id="check" onclick="changeStatus()"></input>
-        </div>
-    </div>
+    <%- include('./footer.ejs') %>
 <script>
     const erase =document.querySelector('a.delete');
     erase.addEventListener('click', (e)=>{
@@ -66,7 +59,4 @@
     })
 </script>
 </body>
-<!--<script src="./js/darkmode.js"></script>-->
-<script src="./js/darkmode.js"></script>
-
 </html>

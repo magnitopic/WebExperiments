@@ -25,7 +25,7 @@ For ease of use you can run the project in Docker.
 Once Docker is installed, go to the folder where **you cloned the repository** and run the following commands:
 ### Build Docker image
 ```bash
-docker build -t magnitopic/server:1.0 .
+sudo docker build -t magnitopic/server:1.0 .
 ```
 ### Run the MongoDB container
 ```bash
@@ -33,7 +33,7 @@ sudo docker run --name=mongo -d -v /home/mag:/mongodb_data_volume -p 80:5000 mon
 ```
 ### Run the NodeJS container
 ```bash
-docker run --name node -d --net container:mongo magnitopic/server:1.0
+ sudo docker run --name node -d --net container:mongo magnitopic/server:1.0
 ```
 ## Server is now runing
 Go to http://localhost to see the page.

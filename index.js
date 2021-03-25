@@ -2,7 +2,6 @@ const express= require('express');
 const mongoose= require('mongoose');
 const path=require('path');
 const Dice =require('./models/dice');
-const temp=require('./models/esp');
 const ESP =require('./models/esp');
 const geoip = require('geoip-lite');
 const { json } = require('express');
@@ -10,8 +9,11 @@ const { json } = require('express');
 const app=express();
 const dbURL='mongodb://localhost/NodeServerDB';
 app.use(express.urlencoded({ extended: true }));
+//Midleware for parsing JSON
 app.use(express.json());
+//Defining the view engine 
 app.set('view engine', 'ejs');
+//and the folder with the ejs files
 app.set('views', 'web');
 
 app.use(express.static(path.join(__dirname, 'web')));
@@ -63,7 +65,7 @@ app.get('/dice', (req,res)=>{
 //We use toLocaleString() to turn the date to a shorter format
 app.post('/dice', (req, res) =>{
     const range= req.body.range
-    var ip = req.connection.remoteAddress;
+    var ip = req.socket.remoteAddress;
     var geo = geoip.lookup(ip);
     console.log(typeof ip);
     console.log(typeof geo);
@@ -109,6 +111,8 @@ app.get('/all-dice', (req, res) =>{
         })
 })
 
-app.get('/', (req, res) => res.sendFile('./web/index.html', {root: __dirname}));
+app.get('/',(req, res)=>{
+    res.render('index');
+})
 
 app.use((req,res) => res.status(404).render('404'));
