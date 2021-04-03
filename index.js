@@ -7,7 +7,7 @@ const geoip = require('geoip-lite');
 const { json } = require('express');
 
 const app=express();
-const dbURL='mongodb://localhost/NodeServerDB';
+const dbURL='MONGODB_URL';
 app.use(express.urlencoded({ extended: true }));
 //Midleware for parsing JSON
 app.use(express.json());
@@ -117,3 +117,30 @@ app.get('/',(req, res)=>{
 })
 
 app.use((req,res) => res.status(404).render('404'));
+
+//WebHook handeler
+
+app.post("/github", (req, res) => {
+    const content = ":wave: Hi mom!";
+    const avatarUrl = "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif";
+    axios
+      .post(process.env.DISCORD_WEBHOOK_URL, {
+        content: content,
+        embeds: [
+          {
+            image: {
+              url: avatarUrl,
+            },
+          },
+        ],
+      })
+      .then((discordResponse) => {
+        console.log("Success!");
+        res.status(204).send();
+      })
+      .catch((err) => console.error(`Error sending to Discord: ${err}`));
+  });
+  
+  app.listen(port, () =>
+    console.log(`Example app listening at http://localhost:${port}`)
+  );

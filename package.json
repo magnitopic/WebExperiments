@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/magnitopic/magnitopic.com-express#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "country-flag-icons": "^1.2.8",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
