@@ -7,7 +7,7 @@ const geoip = require('geoip-lite');
 const { json } = require('express');
 
 const app=express();
-const dbURL='MONGODB_URL';
+const dbURL=MONGODB_URL;
 app.use(express.urlencoded({ extended: true }));
 //Midleware for parsing JSON
 app.use(express.json());
