@@ -1,10 +1,7 @@
-# magnitopic.com-express
+# WebExperiments
 # About this project
-~~This repository holds the source code for the magnitopic.com web page.~~
-The source code that the magnitopic.com web page is currently hosted is in [this repo](https://github.com/magnitopic/magnitopic.com-JAMStack). I plan on changing this once the code of this project is ready to be hosted.
+This proyect was made for me to lear NodeJS, Express, MongoDB... and any future web technology that I throw into the mix. Each page in this website has it's own gimmick wich helps me learn a new technology or service.
 
-
-The long-term goal is to have a group of repositories that can all hosted in magnitopic.com, but each one of them uses different technologies, as I go about learning them. This one uses NodeJS with express, and MongoDB as it's server. As for the frontend, I'll be using [ejs](https://www.npmjs.com/package/ejs).
 ## Install
 For ease of use you can run the project in Docker.
 ## Install Docker
