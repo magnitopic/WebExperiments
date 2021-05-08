@@ -8,7 +8,7 @@ const { json } = require('express');
 
 const app=express();
 //mongodb://localhost:27017/NodeServerDB
-const dbURL=process.env.MONGODB_URI;
+const dbURL="mongodb://localhost:27017/NodeServerDB";
 app.use(express.urlencoded({ extended: true }));
 //Midleware for parsing JSON
 app.use(express.json());
@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'web')));
 const port=process.env.PORT || 8080;
 
 mongoose.connect(dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
-    .then(result => app.listen(port, () => console.log(`\nServer runing on port ${port}`)), console.log('Connection to DB successful'))
+    .then(result => app.listen(port, '0.0.0.0', () => console.log(`\nServer runing on port ${port} at http://localhost:${port}`)))
     .catch(err => console.log(err));
 
 //Code for the connection of the esp8266 board 
