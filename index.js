@@ -1,4 +1,6 @@
+require('dotenv').config()
 const express= require('express');
+const axios=require("axios").default;
 const mongoose= require('mongoose');
 const path=require('path');
 const Dice =require('./models/dice');
@@ -21,8 +23,8 @@ app.use(express.static(path.join(__dirname, 'web')));
 
 const port=process.env.PORT || 8080;
 
-mongoose.connect(dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
-    .then(result => app.listen(port, '0.0.0.0', () => console.log(`\nServer runing on port ${port} at http://localhost:${port}`)))
+mongoose.connect(process.env.dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
+    .then(result => app.listen(port, '0.0.0.0'))
     .catch(err => console.log(err));
 
 //Code for the connection of the esp8266 board 
@@ -33,7 +35,7 @@ app.post('/esp', (req, res)=>{
 
     esp.save()
     .then((result)=>{
-        res.send("hi");
+        res.send("Data saved");
     })
     .catch((err)=>{
         res.send(req.body)
@@ -143,5 +145,5 @@ app.post("/github", (req, res) => {
   });
   
   app.listen(port, () =>
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`\nServer runing on port ${port} at http://localhost:${port}`)
   );
