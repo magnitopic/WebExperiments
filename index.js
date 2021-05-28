@@ -1,16 +1,16 @@
 require('dotenv').config()
-const express= require('express');
-const axios=require("axios").default;
-const mongoose= require('mongoose');
-const path=require('path');
-const Dice =require('./models/dice');
-const ESP =require('./models/esp');
+const express = require('express');
+const axios = require("axios").default;
+const mongoose = require('mongoose');
+const path = require('path');
+const Dice = require('./models/dice');
+const ESP = require('./models/esp');
 const geoip = require('geoip-lite');
 const { json } = require('express');
 
-const app=express();
+const app = express();
 //mongodb://localhost:27017/NodeServerDB
-const dbURL="mongodb://localhost:27017/NodeServerDB";
+const dbURL = "mongodb://localhost:27017/NodeServerDB";
 app.use(express.urlencoded({ extended: true }));
 //Midleware for parsing JSON
 app.use(express.json());
@@ -21,129 +21,125 @@ app.set('views', 'web');
 
 app.use(express.static(path.join(__dirname, 'web')));
 
-const port=process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
-mongoose.connect(process.env.dbURL,{ useNewUrlParser: true , useUnifiedTopology: true })
+mongoose.connect(process.env.dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => app.listen(port, '0.0.0.0'))
     .catch(err => console.log(err));
 
 //Code for the connection of the esp8266 board 
 
-app.post('/esp', (req, res)=>{
+app.post('/esp', (req, res) => {
     console.log(req.body);
-	const esp = new ESP(req.body);
+    const esp = new ESP(req.body);
 
     esp.save()
-    .then((result)=>{
-        res.send("Data saved");
-    })
-    .catch((err)=>{
-        res.send(req.body)
-        console.log(err);
-    })
+        .then((result) => {
+            res.send("Data saved");
+        })
+        .catch((err) => {
+            res.send(req.body)
+            console.log(err);
+        })
 });
 
-app.get('/esp', (req, res)=>{
+app.get('/esp', (req, res) => {
     ESP.find()
-        .then((result)=>{
+        .then((result) => {
             res.render('esp', { esp: result })
         })
-        .catch((err)=>{
+        .catch((err) => {
             console.log(err)
         })
 });
 
 //Code for the connections for the /dice page
-	
-	
-app.get('/dice', (req,res)=>{
-    Dice.find().sort({ createdAt: -1})
-        .then((result)=>{
+
+
+app.get('/dice', (req, res) => {
+    Dice.find().sort({ createdAt: -1 })
+        .then((result) => {
             res.render('dice', { dice: result })
         })
-        .catch((err)=>{
+        .catch((err) => {
             console.log(err)
         })
 });
 
 //We use toLocaleString() to turn the date to a shorter format
-app.post('/dice', (req, res) =>{
-    const range= req.body.range
+app.post('/dice', (req, res) => {
+    const range = req.body.range
     var ip = req.socket.remoteAddress;
     var geo = geoip.lookup(ip);
     console.log(typeof ip);
     console.log(typeof geo);
     console.log(geo);
     console.log(ip);
-    if (range>=1){
-    const result=Math.floor(Math.random()*range+1);
-    const dice = new Dice({
-        date:  new Date().toLocaleString(),
-        range: range,
-        result: result,
-        country: geo.country
-    });
-
-    dice.save()
-        .then(result => {
-            console.log(ip)
-            res.redirect('/dice');
-        })
-        .catch(err =>{
-            console.log(err);
+    if (range >= 1) {
+        const result = Math.floor(Math.random() * range + 1);
+        const dice = new Dice({
+            date: new Date().toLocaleString(),
+            range: range,
+            result: result,
+            country: geo.country
         });
-    }else{
+
+        dice.save()
+            .then(result => {
+                console.log(ip)
+                res.redirect('/dice');
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    } else {
         res.redirect('/dice');
     }
 });
 
-app.delete('/dice',(req,res)=>{
+app.delete('/dice', (req, res) => {
     Dice.deleteMany({})
-    .then(result=>{
-        res.json({ redirect: '/dice'});
-    })
-    .catch(err=>console.log(err));
+        .then(result => {
+            res.json({ redirect: '/dice' });
+        })
+        .catch(err => console.log(err));
 });
 
-app.get('/all-dice', (req, res) =>{
+app.get('/all-dice', (req, res) => {
     Dice.find()
         .then(result => {
             res.send(result);
         })
-        .catch(err=>{
+        .catch(err => {
             console.log(err)
         })
-})
+});
 
-app.get('/',(req, res)=>{
+app.get('/', (req, res) => {
     res.render('index');
-})
+});
 
-app.use((req,res) => res.status(404).render('404'));
+//Main page for map 
+app.get('/map', (req, res) => {
+    res.render('map');
+});
 
 //WebHook handeler
-
 app.post("/github", (req, res) => {
-    const content = ":wave: Hi mom!";
-    const avatarUrl = "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif";
+    const content = "Stared :star:";
     axios
-      .post(process.env.DISCORD_WEBHOOK_URL, {
-        content: content,
-        embeds: [
-          {
-            image: {
-              url: avatarUrl,
-            },
-          },
-        ],
-      })
-      .then((discordResponse) => {
-        console.log("Success!");
-        res.status(204).send();
-      })
-      .catch((err) => console.error(`Error sending to Discord: ${err}`));
-  });
-  
-  app.listen(port, () =>
+        .post(process.env.DISCORD_WEBHOOK_URL, {
+            content: content})
+        .then((discordResponse) => {
+            console.log("Success!");
+            res.status(204).send();
+        })
+        .catch((err) => console.error(`Error sending to Discord: ${err}`));
+});
+
+//Status 404 for all other routes
+app.use((req, res) => res.status(404).render('404'));
+
+app.listen(port, () =>
     console.log(`\nServer runing on port ${port} at http://localhost:${port}`)
-  );
+);
