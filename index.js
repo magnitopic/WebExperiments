@@ -126,11 +126,11 @@ app.get('/map', (req, res) => {
 
 //WebHook handeler
 app.post("/github", (req, res) => {
-    console.log(req.body)
     const username = req.body.sender.login;
     const action= req.body.action;
     const full_name=req.body.repository.full_name;
     const avatar_url= req.body.sender.avatar_url;
+    const userURL=req.body.sender.html_url;
     const content = `${username} just ${action} ${full_name}`;
     axios
         .post(process.env.DISCORD_WEBHOOK_URL, {
@@ -139,7 +139,7 @@ app.post("/github", (req, res) => {
             avatar_url: avatar_url,
         })
         .then((discordResponse) => {
-            console.log("Success!");
+            console.log(req.body);
             res.status(204).send();
         })
         .catch((err) => console.error(`Error sending to Discord: ${err}`));
