@@ -9,8 +9,6 @@ const geoip = require('geoip-lite');
 const { json } = require('express');
 
 const app = express();
-//mongodb://localhost:27017/NodeServerDB
-const dbURL = "mongodb://localhost:27017/NodeServerDB";
 app.use(express.urlencoded({ extended: true }));
 //Midleware for parsing JSON
 app.use(express.json());
@@ -122,27 +120,6 @@ app.get('/', (req, res) => {
 //Main page for map 
 app.get('/map', (req, res) => {
     res.render('map');
-});
-
-//WebHook handeler
-app.post("/github", (req, res) => {
-    const username = req.body.sender.login;
-    const action= req.body.action;
-    const full_name=req.body.repository.full_name;
-    const avatar_url= req.body.sender.avatar_url;
-    const userURL=req.body.sender.html_url;
-    const content = `${username} just ${action} ${full_name}`;
-    axios
-        .post(process.env.DISCORD_WEBHOOK_URL, {
-            content: content,
-            username: username,
-            avatar_url: avatar_url,
-        })
-        .then((discordResponse) => {
-            console.log(req.body);
-            res.status(204).send();
-        })
-        .catch((err) => console.error(`Error sending to Discord: ${err}`));
 });
 
 //Status 404 for all other routes
