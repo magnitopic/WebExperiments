@@ -119,6 +119,7 @@ app.get('/', (req, res) => {
 
 //Main page for map 
 app.get('/map', (req, res) => {
+    console.log(`Loading map`)
     res.render('map');
 });
 
