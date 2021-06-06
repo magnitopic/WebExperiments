@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magnitopic/magnitopic.com-express.git"
+    "url": "https://github.com/magnitopic/WebExperiments.git"
   },
   "author": "Magnitopic",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/magnitopic/magnitopic.com-express/issues"
+    "url": "https://github.com/magnitopic/WebExperiments/issues"
   },
-  "homepage": "https://github.com/magnitopic/magnitopic.com-express#readme",
+  "homepage": "https://github.com/magnitopic/WebExperiments#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "country-flag-icons": "^1.2.8",
@@ -32,5 +32,7 @@
     "ol": "^6.5.0",
     "sass": "^1.32.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
 }
