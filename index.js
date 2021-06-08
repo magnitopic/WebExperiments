@@ -118,10 +118,10 @@ app.get('/', (req, res) => {
 });
 
 //Main page for map 
-app.get('/map', (req, res) => {
+/*app.get('/map', (req, res) => {
     console.log(`Loading map`)
     res.render('map');
-});
+});*/
 
 //Status 404 for all other routes
 app.use((req, res) => res.status(404).render('404'));

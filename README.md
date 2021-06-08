@@ -6,6 +6,8 @@ This proyect was made for me to lear NodeJS, Express, MongoDB... and any future 
 For ease of use you can run the project in Docker.
 ## Install Docker
 
+![Doker](https://1.bp.blogspot.com/-68aYf9ZNiZk/X33sbaV4AwI/AAAAAAAAFZo/Hf1BCsZT7KAIwbhmPx1yBitJ2LCpXQT-QCLcBGAsYHQ/s0/logo_docker.png)
+
 - **Windows:** [Docker Desktop on Windows](https://docs.docker.com/docker-for-windows/install/)
 
 - **MacOS:** [Docker Desktop on Mac](https://docs.docker.com/docker-for-mac/install/)
