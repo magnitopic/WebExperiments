@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'web')));
 const port = process.env.PORT || 8080;
 const host = process.env.HOST || '0.0.0.0';
 
-mongoose.connect(process.env.dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => app.listen(port, '0.0.0.0'))
     .catch(err => console.log(err));
 
