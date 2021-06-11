@@ -20,6 +20,7 @@ app.set('views', 'web');
 app.use(express.static(path.join(__dirname, 'web')));
 
 const port = process.env.PORT || 8080;
+const host = process.env.HOST || '0.0.0.0';
 
 mongoose.connect(process.env.dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => app.listen(port, '0.0.0.0'))
@@ -126,6 +127,6 @@ app.get('/', (req, res) => {
 //Status 404 for all other routes
 app.use((req, res) => res.status(404).render('404'));
 
-app.listen(port, () =>
+app.listen(port, host, () =>
     console.log(`\nServer runing on port ${port} at http://localhost:${port}`)
 );
