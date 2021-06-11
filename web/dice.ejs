@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dice Page</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/dice.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/dice.css">
 </head>
 
 <body>
     <div style="display: flex; justify-content: center;">
         <div id="container">
-            <img src="./img/dice.png" alt="Dado" style="width:27vw;">
+            <img src="img/dice.png" alt="Dado" style="width:27vw;">
             <div id="result">
                 <%= dice[0].result %>
             </div>
@@ -23,41 +23,50 @@
         <input id="FInput" type="number" value="6" name="range">
         <button id="FSubmit">Roll the dice</button>
     </form>
-    <div style="display: flex;justify-content: center;"><a class="delete" data-doc="<%= dice %>">Delete Dice throws</a></div>
+    <div style="display: flex;justify-content: center;"><a class="delete" data-doc="<%= dice %>">Delete Dice throws</a>
+    </div>
     <hr>
     <div class="history">
-        <% if (dice.length > 0) { %>
+        <% if (dice.length> 0) { %>
             <div class="entries">
                 <div class="value">Country</div>
                 <div id="date" class="value">Date</div>
                 <div class="value">Range</div>
                 <div class="value">Result</div>
             </div>
-            <% dice.forEach(dice =>{%>
-            <div class="entries">
-                <!--.toString().slice(4, -45).replace('Feb',"02");-->
-                <div class="value"><%= dice.country %></div>
-                <div id="date" class="value"><%= dice.date%></div>
-                <div class="value">1-<%= dice.range %></div>
-                <div class="value"><%= dice.result %></div>
-                
-            </div>
-            <% })%>
-        <% } else {%>
-            <h2 style="margin: 2vw;">No one has rolled the dice yet. Be the first!!</h2>
-        <% } %>
+            <% dice.forEach(dice=>{%>
+                <div class="entries">
+                    <!--.toString().slice(4, -45).replace('Feb',"02");-->
+                    <div class="value">
+                        <%= dice.country %>
+                    </div>
+                    <div id="date" class="value">
+                        <%= dice.date%>
+                    </div>
+                    <div class="value">1-<%= dice.range %>
+                    </div>
+                    <div class="value">
+                        <%= dice.result %>
+                    </div>
+
+                </div>
+                <% })%>
+                    <% } else {%>
+                        <h2 style="margin: 2vw;">No one has rolled the dice yet. Be the first!!</h2>
+                        <% } %>
     </div>
     <%- include('./footer.ejs') %>
-<script>
-    const erase =document.querySelector('a.delete');
-    erase.addEventListener('click', (e)=>{
-        fetch('/dice',{
-            method: 'DELETE'
-        })
-        .then((response)=>response.json())
-        .then((data)=>window.location.href=data.redirect)
-        .catch(err=> console.log(err));
-    })
-</script>
+        <script>
+            const erase = document.querySelector('a.delete');
+            erase.addEventListener('click', (e) => {
+                fetch('/dice', {
+                    method: 'DELETE'
+                })
+                    .then((response) => response.json())
+                    .then((data) => window.location.href = data.redirect)
+                    .catch(err => console.log(err));
+            })
+        </script>
 </body>
+
 </html>
