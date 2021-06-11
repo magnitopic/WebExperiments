@@ -14,7 +14,11 @@
         <div id="container">
             <img src="img/dice.png" alt="Dado" style="width:27vw;">
             <div id="result">
-                <%= dice[0].result %>
+                <% if (dice.length> 0) {%>
+                    <%= dice[0].result %>
+                <% } else {%>
+                    <p>0</p>
+                <% } %>
             </div>
         </div>
     </div>
