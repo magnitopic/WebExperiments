@@ -13,7 +13,7 @@ checkStatus()
 function checkStatus(){
     if (localStorage.getItem('darkMode')==="true"){
         check.checked = true;
-        link.href = './css/dark.css';
+        link.href = 'css/dark.css';
     }else{
         check.checked = false;
         link.href = '';
@@ -28,7 +28,7 @@ function changeStatus(){
         //document.body.style.backgroundColor = "#FFF";
     } else{
         localStorage.setItem('darkMode', "true");
-        link.href = './css/dark.css';
+        link.href = 'css/dark.css';
         //document.getElementsByTagName("p")[0].style.color="#FFF";
         //document.body.style.backgroundColor = "#181A1B";
     }
