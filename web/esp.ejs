@@ -12,15 +12,19 @@
 <body>
     <p class="titles">Data form the ESP8266 chip</p>
     <div id="scoreBoard">
-        <div id="temp" class="BNumbers">
-            <p>Temperature</p>
-            <%= esp[esp.length - 1].temperature %>ºC
-        </div>
-        <div id="separator" style="border: 2px solid #000;height: 20vh;"></div>
-        <div id="hum" class="BNumbers">
-            <p>Humidity</p>
-            <%= esp[esp.length - 1].humidity %>%
-        </div>
+        <% if (dice.length> 0) {%>
+            <div id="temp" class="BNumbers">
+                <p>Temperature</p>
+                <%= esp[esp.length - 1].temperature %>ºC
+            </div>
+            <div id="separator" style="border: 2px solid #000;height: 20vh;"></div>
+            <div id="hum" class="BNumbers">
+                <p>Humidity</p>
+                    <%= esp[esp.length - 1].humidity %>
+            </div>
+        <% } else {%>
+            <h1>No data</h1>
+        <% } %>
     </div>
     <div style="display: flex;justify-content: center;">
         <div id="stats">
@@ -29,10 +33,9 @@
                 <div class="block">
                     <p>Number of stored values:</p>&nbsp; <%= esp.length %>
                 </div>
-
-                <% } else {%>
-                    <p class="titles">No data has been sent</p>
-                    <% } %>
+            <% } else {%>
+                <p class="titles">No data has been sent</p>
+            <% } %>
 
         </div>
     </div>
