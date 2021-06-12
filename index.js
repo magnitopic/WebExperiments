@@ -69,7 +69,7 @@ app.get('/dice', (req, res) => {
 app.post('/dice', (req, res) => {
     const range = req.body.range
     var ip = String(req.socket.remoteAddress);
-    var geo = geoip.lookup(ip);
+    var geo = geoip.lookup(String(ip));
     console.log(typeof ip);
     console.log(typeof geo);
     console.log(geo);
