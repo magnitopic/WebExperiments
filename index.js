@@ -68,7 +68,7 @@ app.get('/dice', (req, res) => {
 //We use toLocaleString() to turn the date to a shorter format
 app.post('/dice', (req, res) => {
     const range = req.body.range
-    var ip = req.socket.remoteAddress;
+    var ip = String(req.socket.remoteAddress);
     var geo = geoip.lookup(ip);
     console.log(typeof ip);
     console.log(typeof geo);
@@ -96,6 +96,7 @@ app.post('/dice', (req, res) => {
     }
 });
 
+//Route to delete all dice entries
 app.delete('/dice', (req, res) => {
     Dice.deleteMany({})
         .then(result => {
@@ -104,6 +105,7 @@ app.delete('/dice', (req, res) => {
         .catch(err => console.log(err));
 });
 
+//Get a raw json vew of all the dice stored
 app.get('/all-dice', (req, res) => {
     Dice.find()
         .then(result => {
