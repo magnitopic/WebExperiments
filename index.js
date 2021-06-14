@@ -68,8 +68,8 @@ app.get('/dice', (req, res) => {
 //We use toLocaleString() to turn the date to a shorter format
 app.post('/dice', (req, res) => {
     const range = req.body.range
-    var ip = String(req.socket.remoteAddress);
-    var geo = geoip.lookup(String(ip));
+    var ip = JSON.stringify(req.socket.remoteAddress);
+    var geo = geoip.lookup(ip);
     console.log(typeof ip);
     console.log(typeof geo);
     console.log(geo);
