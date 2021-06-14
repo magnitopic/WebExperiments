@@ -32,3 +32,5 @@ docker build -t magnitopic/server:1.0 . && docker run --name=mongo -d -v /home/m
 ```
 ## Server is now runing
 Go to http://localhost to see the page.
+
+[comment]: <> (sudo docker stop node && sudo docker rm node && sudo docker build -t magnitopic/server:1.0 . && sudo docker run --name node -e DB_URL=mongodb://localhost:27017/NodeServerDB -d --net container:mongo magnitopic/server:1.0)

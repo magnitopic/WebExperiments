@@ -20,7 +20,7 @@ app.set('views', 'web');
 app.use(express.static(path.join(__dirname, 'web')));
 
 const port = process.env.PORT || 8080;
-const host = process.env.HOST || '0.0.0.0';
+const host = process.env.HOST || '::';
 
 mongoose
     .connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -68,12 +68,11 @@ app.get('/dice', (req, res) => {
 //We use toLocaleString() to turn the date to a shorter format
 app.post('/dice', (req, res) => {
     const range = req.body.range
-    var ip = JSON.stringify(req.socket.remoteAddress);
-    console.log(typeof ip);
+    const ip=req.socket.address().address;
     var geo = geoip.lookup(ip);
-    console.log(typeof geo);
-    console.log(geo);
     console.log(ip);
+    console.log(geo);
+    
     if (range >= 1) {
         const result = Math.floor(Math.random() * range + 1);
         const dice = new Dice({
