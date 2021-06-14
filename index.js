@@ -69,8 +69,8 @@ app.get('/dice', (req, res) => {
 app.post('/dice', (req, res) => {
     const range = req.body.range
     var ip = JSON.stringify(req.socket.remoteAddress);
-    var geo = geoip.lookup(ip);
     console.log(typeof ip);
+    var geo = geoip.lookup(ip);
     console.log(typeof geo);
     console.log(geo);
     console.log(ip);
