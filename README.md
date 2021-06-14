@@ -32,7 +32,7 @@ docker run --name=mongo -d -v /home/mag:/mongodb_data_volume -p 80:5000 mongo
 ```
 ### Run the NodeJS container
 ```bash
-docker run --name node -d --net container:mongo magnitopic/server:1.0
+docker run --name node -e DB_URL=mongodb://localhost:27017/NodeServerDB -d --net container:mongo magnitopic/server:1.0
 ```
 ## Server is now runing
 Go to http://localhost to see the page.
