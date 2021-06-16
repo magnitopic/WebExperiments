@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/magnitopic/WebExperiments#readme",
   "dependencies": {
+    "address": "^1.1.2",
     "axios": "^0.21.1",
     "country-flag-icons": "^1.2.8",
     "dotenv": "^10.0.0",

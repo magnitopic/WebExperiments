@@ -1,4 +1,5 @@
 require('dotenv').config()
+const address = require("address");
 const express = require('express');
 const axios = require("axios").default;
 const mongoose = require('mongoose');
@@ -68,9 +69,9 @@ app.get('/dice', (req, res) => {
 //We use toLocaleString() to turn the date to a shorter format
 app.post('/dice', (req, res) => {
     const range = req.body.range
-    const ip=req.socket.address().address;
+    var ip=address.ip();
+    console.log(ip)
     var geo = geoip.lookup(ip);
-    console.log(ip);
     console.log(geo);
     
     if (range >= 1) {
