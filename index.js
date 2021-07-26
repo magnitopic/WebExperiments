@@ -1,5 +1,6 @@
 require('dotenv').config()
-const address = require("address");
+const https = require('https');
+const userIP = require('user-ip');
 const express = require('express');
 const axios = require("axios").default;
 const mongoose = require('mongoose');
@@ -24,111 +25,110 @@ const port = process.env.PORT || 8080;
 const host = process.env.HOST || '::';
 
 mongoose
-    .connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .catch(err => console.log(err));
+	.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+	.catch(err => console.log(err));
 
 //Code for the connection of the esp8266 board 
 
 app.post('/esp', (req, res) => {
-    console.log(req.body);
-    const esp = new ESP(req.body);
+	console.log(req.body);
+	const esp = new ESP(req.body);
 
-    esp.save()
-        .then((result) => {
-            res.send("Data saved");
-        })
-        .catch((err) => {
-            res.send(req.body)
-            console.log(err);
-        })
+	esp.save()
+		.then((result) => {
+			res.send("Data saved");
+		})
+		.catch((err) => {
+			res.send(req.body)
+			console.log(err);
+		})
 });
 
 app.get('/esp', (req, res) => {
-    ESP.find()
-        .then((result) => {
-            res.render('esp', { esp: result })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+	ESP.find()
+		.then((result) => {
+			res.render('esp', { esp: result })
+		})
+		.catch((err) => {
+			console.log(err)
+		})
 });
 
 //Code for the connections for the /dice page
 
 
 app.get('/dice', (req, res) => {
-    Dice.find().sort({ createdAt: -1 })
-        .then((result) => {
-            res.render('dice', { dice: result })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+	Dice.find().sort({ createdAt: -1 })
+		.then((result) => {
+			res.render('dice', { dice: result })
+		})
+		.catch((err) => {
+			console.log(err)
+		})
 });
 
 //We use toLocaleString() to turn the date to a shorter format
 app.post('/dice', (req, res) => {
-    const range = req.body.range
-    var ip=address.ip();
-    console.log(ip)
+	const range = req.body.range
+	var ip = userIP(req);
+	console.log(ip);
     var geo = geoip.lookup(ip);
     console.log(geo);
-    
-    if (range >= 1) {
-        const result = Math.floor(Math.random() * range + 1);
-        const dice = new Dice({
-            date: new Date().toLocaleString(),
-            range: range,
-            result: result,
-            country: geo.country
-        });
 
-        dice.save()
-            .then(result => {
-                console.log(ip)
-                res.redirect('/dice');
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    } else {
-        res.redirect('/dice');
-    }
+	if (range >= 1) {
+		const result = Math.floor(Math.random() * range + 1);
+		const dice = new Dice({
+			date: new Date().toLocaleString(),
+			range: range,
+			result: result,
+			country: geo.country
+		});
+
+		dice.save()
+			.then(result => {
+				res.redirect('/dice');
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	} else {
+		res.redirect('/dice');
+	}
 });
 
 //Route to delete all dice entries
 app.delete('/dice', (req, res) => {
-    Dice.deleteMany({})
-        .then(result => {
-            res.json({ redirect: '/dice' });
-        })
-        .catch(err => console.log(err));
+	Dice.deleteMany({})
+		.then(result => {
+			res.json({ redirect: '/dice' });
+		})
+		.catch(err => console.log(err));
 });
 
 //Get a raw json vew of all the dice stored
 app.get('/all-dice', (req, res) => {
-    Dice.find()
-        .then(result => {
-            res.send(result);
-        })
-        .catch(err => {
-            console.log(err)
-        })
+	Dice.find()
+		.then(result => {
+			res.send(result);
+		})
+		.catch(err => {
+			console.log(err)
+		})
 });
 
 app.get('/', (req, res) => {
-    res.render('index');
+	res.render('index');
 });
 
 //Main page for map 
 app.get('/map', (req, res) => {
-    console.log(`Loading map`)
-    res.render('map');
+	console.log(`Loading map`)
+	res.render('map');
 });
 
 //Status 404 for all other routes
 app.use((req, res) => res.status(404).render('404'));
 
 app.listen(port, host, () =>
-    console.log(`\nServer runing on port ${port} at http://localhost:${port}`)
+	console.log(`\nServer runing on port ${port} at http://localhost:${port}`)
 );

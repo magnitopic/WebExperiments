@@ -21,9 +21,7 @@
   },
   "homepage": "https://github.com/magnitopic/WebExperiments#readme",
   "dependencies": {
-    "address": "^1.1.2",
     "axios": "^0.21.1",
-    "country-flag-icons": "^1.2.8",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
@@ -31,7 +29,8 @@
     "mongoose": "^5.11.15",
     "nodemon": "^2.0.7",
     "ol": "^6.5.0",
-    "sass": "^1.32.6"
+    "sass": "^1.32.6",
+    "user-ip": "^1.1.0"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
