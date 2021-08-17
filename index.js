@@ -126,6 +126,25 @@ app.get('/map', (req, res) => {
 	res.render('map');
 });
 
+//Call to an API
+
+https.get('https://datos.gob.es/apidata/catalog/dataset/e05024301-precio-de-carburantes-en-las-gasolineras-espanolas.json', (resp) => {
+  let data = '';
+
+  // A chunk of data has been received.
+  resp.on('data', (chunk) => {
+    data += chunk;
+  });
+
+  // The whole response has been received. Print out the result.
+  resp.on('end', () => {
+    console.log(JSON.parse(data));
+  });
+
+}).on("error", (err) => {
+  console.log("Error: " + err.message);
+});
+
 //Status 404 for all other routes
 app.use((req, res) => res.status(404).render('404'));
 
