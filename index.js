@@ -145,6 +145,11 @@ https.get('https://datos.gob.es/apidata/catalog/dataset/e05024301-precio-de-carb
   console.log("Error: " + err.message);
 });
 
+// Page for dead pixel checker
+app.get('/pixel',(req,res)=>{
+	res.render('pixel');
+});
+
 //Status 404 for all other routes
 app.use((req, res) => res.status(404).render('404'));
 

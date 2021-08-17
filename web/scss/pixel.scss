@@ -1,0 +1,16 @@
+#content{
+	padding: 1px 3vh 3vh 3vh;
+}
+
+#startButton{
+	border: none;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 0.8vw;
+}
+
+#startButton:hover{
+    transition: all .4s ease;
+    background-color: #00b900f8;
+}
