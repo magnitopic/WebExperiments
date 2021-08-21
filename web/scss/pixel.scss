@@ -1,3 +1,9 @@
+html, 
+body {
+    height: 100%;
+    margin: 0px;
+}
+
 #content{
 	padding: 1px 3vh 3vh 3vh;
 }
@@ -13,4 +19,5 @@
 #startButton:hover{
     transition: all .4s ease;
     background-color: #00b900f8;
+    color: white;
 }

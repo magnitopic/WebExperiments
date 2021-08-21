@@ -150,6 +150,10 @@ app.get('/pixel',(req,res)=>{
 	res.render('pixel');
 });
 
+app.get('/pixel-colours',(req,res)=>{
+	res.render('pixel-colours');
+});
+
 //Status 404 for all other routes
 app.use((req, res) => res.status(404).render('404'));
 
