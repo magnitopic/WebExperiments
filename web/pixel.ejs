@@ -8,15 +8,19 @@
 	<link rel="stylesheet" href="css/pixel.css">
 	<script src="js/pixel.js"></script>
 </head>
-<body id="body">
-	<div id="content">
-		<h1>Wellcome to the dead pixel checker</h1>
-		<h2>How does it work?</h2>
-		<p>Very simple, when you press the <i>Start</i> button your screen will change between five colours: black, white, red, green and blue. <br>
-		This will alow you check that your screen is working properly and that no pixels have stopped working.</p> 
-		<b>Remember</b> that to change between the colours you can press anywhere on the screen or your space bar.<br>
-		To come back to this screen reload the page.<br><br>
-		<input type="button" value="Let's Start!!" id="startButton" onclick="startTest()">
+<body>
+	<div id="page">
+		<div id="content">
+			<h1>Wellcome to the dead pixel checker</h1>
+			<h2>How does it work?</h2>
+			<p>Very simple, when you press the <i>Start</i> button your screen will change between five colours: black, white, red, green and blue. <br>
+			This will alow you check that your screen is working properly and that no pixels have stopped working.</p> 
+			<b>Remember</b> that to change between the colours you can press anywhere on the screen or your space bar.<br>
+			To come back to this screen reload the page.<br><br>
+			<input type="button" value="Let's Start!!" id="FSubmit" onclick="startTest()">
+			
+		</div>
+		<%- include('./footer.ejs') %>
 	</div>
 </body>
 </html>

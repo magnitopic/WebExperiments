@@ -5,20 +5,20 @@
 //Blue=4
 let number=-1,
 start=false,
-textarea = document.getElementById('content');
+el = document.documentElement,
+rfs = // for newer Webkit and Firefox
+	el.requestFullScreen
+	|| el.webkitRequestFullScreen
+	|| el.mozRequestFullScreen
+	|| el.msRequestFullScreen;
 
-let el = document.documentElement;
-       let rfs = // for newer Webkit and Firefox
-           el.requestFullScreen
-           || el.webkitRequestFullScreen
-           || el.mozRequestFullScreen
-           || el.msRequestFullScreen
+
 
 function startTest() {
-	document.getElementById("content").style.visibility= "hidden";
+	document.getElementById("page").style.visibility= "hidden";
 
 	//This code whas copied from: https://hdeleon.net/cual-es-el-codigo-javascript-para-simular-la-tecla-f11-del-navegador-pantalla-completa-en-navegador/
-	//Props to them
+	//Props to them for the full screen compatibility
 	if(typeof rfs!="undefined" && rfs){
 		rfs.call(el);
 	} else if(typeof window.ActiveXObject!="undefined"){

@@ -128,22 +128,22 @@ app.get('/map', (req, res) => {
 
 //Call to an API
 
-https.get('https://datos.gob.es/apidata/catalog/dataset/e05024301-precio-de-carburantes-en-las-gasolineras-espanolas.json', (resp) => {
-  let data = '';
+// https.get('https://datos.gob.es/apidata/catalog/dataset/e05024301-precio-de-carburantes-en-las-gasolineras-espanolas.json', (resp) => {
+//   let data = '';
 
-  // A chunk of data has been received.
-  resp.on('data', (chunk) => {
-    data += chunk;
-  });
+//   // A chunk of data has been received.
+//   resp.on('data', (chunk) => {
+//     data += chunk;
+//   });
 
   // The whole response has been received. Print out the result.
-  resp.on('end', () => {
-    console.log(JSON.parse(data));
-  });
+//   resp.on('end', () => {
+//     console.log(JSON.parse(data));
+//   });
 
-}).on("error", (err) => {
-  console.log("Error: " + err.message);
-});
+// }).on("error", (err) => {
+//   console.log("Error: " + err.message);
+// });
 
 // Page for dead pixel checker
 app.get('/pixel',(req,res)=>{
