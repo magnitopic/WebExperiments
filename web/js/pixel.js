@@ -3,7 +3,7 @@
 //Red=2
 //Green=3
 //Blue=4
-let number=0,
+let number=-1,
 start=false,
 textarea = document.getElementById('content');
 
