@@ -2,7 +2,7 @@
 # About this project
 This proyect was made for me to lear NodeJS, Express, MongoDB... and any future web technology that I throw into the mix. Each page in this website has it's own gimmick wich helps me learn a new technology or service.
 
-## Install
+# Install
 For ease of use you can run the project in Docker.
 ## Install Docker
 
