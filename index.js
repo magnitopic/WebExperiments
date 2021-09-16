@@ -1,5 +1,6 @@
 require('dotenv').config()
 const https = require('https');
+const http = require('http');
 const userIP = require('user-ip');
 const express = require('express');
 const axios = require("axios").default;
@@ -126,24 +127,23 @@ app.get('/map', (req, res) => {
 	res.render('map');
 });
 
-//Call to an API
+app.get('/carburantes',(req,res)=>{
+	http.get('http://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres', (resp) => {
+	let data = '';
 
-// https.get('https://datos.gob.es/apidata/catalog/dataset/e05024301-precio-de-carburantes-en-las-gasolineras-espanolas.json', (resp) => {
-//   let data = '';
+	// A chunk of data has been received.
+	resp.on('data', (chunk) => {
+		data += chunk;
+	});
 
-//   // A chunk of data has been received.
-//   resp.on('data', (chunk) => {
-//     data += chunk;
-//   });
-
-  // The whole response has been received. Print out the result.
-//   resp.on('end', () => {
-//     console.log(JSON.parse(data));
-//   });
-
-// }).on("error", (err) => {
-//   console.log("Error: " + err.message);
-// });
+	// The whole response has been received. Print out the result.
+	resp.on('end', () => {
+		console.log(data); 
+	});
+	}).on("error", (err) => {
+	console.log("Error: " + err.message);
+	});
+});	
 
 // Page for dead pixel checker
 app.get('/pixel',(req,res)=>{
