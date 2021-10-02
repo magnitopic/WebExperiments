@@ -57,7 +57,7 @@ app.get('/esp', (req, res) => {
 
 //Code for the connections for the /dice page
 
-
+//
 app.get('/dice', (req, res) => {
 	Dice.find().sort({ createdAt: -1 })
 		.then((result) => {
@@ -127,8 +127,9 @@ app.get('/map', (req, res) => {
 	res.render('map');
 });
 
+//Experiment on working with Spanish goverment APIs, on hold for now
 app.get('/carburantes',(req,res)=>{
-	http.get('http://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres', (resp) => {
+	https.get('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres', (resp) => {
 	let data = '';
 
 	// A chunk of data has been received.
@@ -138,12 +139,39 @@ app.get('/carburantes',(req,res)=>{
 
 	// The whole response has been received. Print out the result.
 	resp.on('end', () => {
-		console.log(data); 
+		console.log(data);
+		res.render("gasolinera", {
+			result: data
+		})
 	});
 	}).on("error", (err) => {
 	console.log("Error: " + err.message);
 	});
 });	
+
+//Page for NASA APOD API
+app.get('/apod',(req,res)=>{
+	url=('https://api.nasa.gov/planetary/apod?api_key='+process.env.NASA_KEY)
+	https.get(url, (resp) => {
+	let data = '';
+
+	// A chunk of data has been received.
+	resp.on('data', (chunk) => {
+		data += chunk;
+	});
+
+	// The whole response has been received. Print out the result.
+	resp.on('end', () => {
+		console.log(data);/*
+		const html = await ejs.renderFile(view, data, {async: true});
+		res.send(html); */
+		res.render("nasa", { response: data })
+	});
+	}).on("error", (err) => {
+	console.log("Error: " + err.message);
+	});
+});	
+
 
 // Page for dead pixel checker
 app.get('/pixel',(req,res)=>{
