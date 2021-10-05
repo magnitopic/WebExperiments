@@ -162,10 +162,9 @@ app.get('/apod',(req,res)=>{
 
 	// The whole response has been received. Print out the result.
 	resp.on('end', () => {
-		console.log(data);/*
-		const html = await ejs.renderFile(view, data, {async: true});
-		res.send(html); */
-		res.render("nasa", { response: data })
+		console.log(data);
+		data=JSON.parse(data)
+		res.render("nasa", { response: data.url })
 	});
 	}).on("error", (err) => {
 	console.log("Error: " + err.message);
