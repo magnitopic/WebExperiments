@@ -162,9 +162,13 @@ app.get('/apod',(req,res)=>{
 
 	// The whole response has been received. Print out the result.
 	resp.on('end', () => {
-		console.log(data);
 		data=JSON.parse(data)
-		res.render("nasa", { response: data.url })
+		res.render("nasa", { 
+			url: data.url,
+			title: data.title,
+			date: data.date,
+			explanation: data.explanation
+		 })
 	});
 	}).on("error", (err) => {
 	console.log("Error: " + err.message);
