@@ -129,6 +129,7 @@ app.get('/map', (req, res) => {
 
 //Experiment on working with Spanish goverment APIs, on hold for now
 app.get('/carburantes',(req,res)=>{
+	res.locals.ua = "Mozilla/5.0";
 	https.get('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres', (resp) => {
 	let data = '';
 
