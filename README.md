@@ -4,6 +4,16 @@ This proyect was made for me to lear NodeJS, Express, MongoDB... and any future 
 
 
 You can see this poryect deployed in Heroku: https://limitless-refuge-99811.herokuapp.com/
+
+## Available pages 
+
+- [Dice](https://limitless-refuge-99811.herokuapp.com/dice)
+- [Dead Pixel Checker](https://limitless-refuge-99811.herokuapp.com/pixel)
+- [ESP8266 thermometer](https://limitless-refuge-99811.herokuapp.com/esp)
+- [Google Maps](https://limitless-refuge-99811.herokuapp.com/map)
+- [Spain's petrol prices](https://limitless-refuge-99811.herokuapp.com/petrol)
+- [Nasa's APOD](https://limitless-refuge-99811.herokuapp.com/apod)
+
 # Install
 For ease of use you can run the project in Docker.
 ## Install Docker

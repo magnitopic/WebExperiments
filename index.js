@@ -136,14 +136,14 @@ app.get("/map", (req, res) => {
 
 //Price of petrol in Spain
 
-app.get("/carburantes", (req, res) => {
+app.get("/petrol", (req, res) => {
   request(
     {
       url: "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres",
       json: true,
     },
     (err, response, data) => {
-       res.render("gasolinera", {
+       res.render("petrol", {
         result: data["Fecha"]
       }); 
     }
