@@ -34,13 +34,15 @@ For ease of use you can run the project in Docker.
         ```
 # Run
 Once Docker is installed, go to the folder where **you cloned the repository** and run the following command:
+
+__NOTE:__ Don't forget to change the command with your own GOOGLE_API_KEY and NASA_KEY
 ### Comand for Linux/ MacOS
 ```bash
-sudo docker build -t magnitopic/server:1.0 . && sudo docker run --name=mongo -d -v /home/mag:/mongodb_data_volume -p 80:5000 mongo && sudo docker run --name node -e DB_URL=mongodb://localhost:27017/NodeServerDB -d --net container:mongo magnitopic/server:1.0
+sudo docker build -t magnitopic/server:1.0 . && sudo docker run --name=mongo -d -v /home/mag:/mongodb_data_volume -p 80:5000 mongo && sudo docker run --name node -e DB_URL=mongodb://localhost:27017/NodeServerDB -d --net container:mongo magnitopic/server:1.0 -e GOOGLE_API_KEY=[Insert your GOOGLE_API_KEY] -e NASA_KEY=[Isert your NASA_KEY]
 ```
-### Comad for Windows
+### Comad for Windows-
 ```powershell
-docker build -t magnitopic/server:1.0 . && docker run --name=mongo -d -v /home/mag:/mongodb_data_volume -p 80:5000 mongo && docker run --name node -e DB_URL=mongodb://localhost:27017/NodeServerDB -d --net container:mongo magnitopic/server:1.0
+docker build -t magnitopic/server:1.0 . && docker run --name=mongo -d -v /home/mag:/mongodb_data_volume -p 80:5000 mongo && docker run --name node -e DB_URL=mongodb://localhost:27017/NodeServerDB -d --net container:mongo magnitopic/server:1.0 -e GOOGLE_API_KEY=[Insert your GOOGLE_API_KEY] -e NASA_KEY=[Isert your NASA_KEY]
 ```
 ## Server is now runing
 Go to http://localhost to see the page.
